@@ -15,22 +15,26 @@ import { FiredevCrud } from '../firedev-crud';
 
 
 class TestInstance extends Models.db.DBBaseEntity {
-  async prepareInstance() {
+
+  static from(value: number): TestInstance {
+    const i = new TestInstance({ value });
+    i.assignProps();
+    return i;
+  }
+  public value: number;
+  assignProps(): void {
     this.value = this.data.value;
+  }
+  async prepareInstance() {
+    this.assignProps();
     return this;
   }
 
   async getRawData() {
     return {
       value: this.value
-    }
+    };
   }
-
-  static from(value: number): TestInstance {
-    const i = new TestInstance({ value });
-    return i;
-  }
-  public value: number;
 
 
   isEqual(anotherInstace: TestInstance): boolean {
@@ -47,7 +51,7 @@ describe('Db crud for tnp-db', () => {
   it('should handle test instance of entity', async function () {
 
 
-    let fc = FiredevCrud.from([], [TestInstance])
+    const fc = new FiredevCrud([], [TestInstance]);
     await fc.init({
       recreate: true,
       transformPathDb: p => path.join(
@@ -73,7 +77,7 @@ describe('Db crud for tnp-db', () => {
     expect(instancesExistsCheck.length).to.be.eq(1);
 
     const firstInstace = _.first(instancesExistsCheck);
-    console.log(firstInstace)
+    console.log(firstInstace);
     expect(firstInstace instanceof TestInstance).to.be.true;
 
     expect(firstInstace.value).to.be.eq(exampleValue);

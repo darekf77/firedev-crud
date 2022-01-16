@@ -1,21 +1,23 @@
 //#region imports
 import { _ } from 'tnp-core';
-import { Models } from 'tnp-models';
+import { DBBaseEntity, Models } from 'tnp-models';
 import { Project } from 'tnp-helpers';
 //#endregion
 
-export class ProjectInstance
-  //#region @backend
-  extends Models.db.DBBaseEntity<ProjectInstance>
-//#endregion
-{
+export class ProjectInstance extends DBBaseEntity<ProjectInstance> {
+
   //#region static methods
-  public static from(project: Project): ProjectInstance {
+  public static from(projectOrPath: Project | string): ProjectInstance {
     //#region @backendFunc
-    if (!project) {
+    if (!projectOrPath) {
       return;
     }
-    return new ProjectInstance({ locationOfProject: project.location });
+    if (_.isString(projectOrPath)) {
+      projectOrPath = Project.From(projectOrPath) as Project;
+    }
+    const inst = new ProjectInstance({ locationOfProject: projectOrPath.location });
+    inst.assignProps();
+    return inst;
     //#endregion
   }
   //#endregion
@@ -29,12 +31,18 @@ export class ProjectInstance
 
   //#region api
 
-  //#region api / prepare instance
-  async prepareInstance(): Promise<ProjectInstance> {
+  //#region api / assign props
+  assignProps(): void {
     //#region @backendFunc
     const { locationOfProject } = this.data;
     this.locationOfProject = locationOfProject;
     //#endregion
+  }
+  //#endregion
+
+  //#region api / prepare instance
+  async prepareInstance(): Promise<ProjectInstance> {
+    this.assignProps();
     return this;
   }
   //#endregion
@@ -43,7 +51,7 @@ export class ProjectInstance
   async getRawData(): Promise<object> {
     return {
       locationOfProject: this.locationOfProject
-    }
+    };
   }
   //#endregion
 
@@ -51,7 +59,7 @@ export class ProjectInstance
   isEqual(anotherInstace: ProjectInstance): boolean {
     return _.isString(this.locationOfProject)
       && _.isString(anotherInstace.locationOfProject)
-      && (this.locationOfProject === anotherInstace.locationOfProject)
+      && (this.locationOfProject === anotherInstace.locationOfProject);
   }
   //#endregion
 

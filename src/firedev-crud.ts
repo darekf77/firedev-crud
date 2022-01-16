@@ -14,22 +14,17 @@ import { config } from 'tnp-config';
 import { Helpers } from 'tnp-helpers';
 //#endregion
 import { DbCrud } from './db-crud';
-import { Models } from 'tnp-models';
+import { BaseController, DBBaseEntity, Models } from 'tnp-models';
 import { FiredevCrudInitOptions } from './firedev-crud-init-options';
+import { CLASS } from 'typescript-class-helpers';
+import { ProjectsController } from './projects-controller';
+import { ProjectInstance } from './project-instance';
 //#endregion
 
 declare const global: any;
 
+@CLASS.NAME('FiredevCrud')
 export class FiredevCrud {
-  //#region static methods
-  public static from(
-    controllers?: (typeof Models.db.BaseController)[],
-    entities?: (typeof Models.db.DBBaseEntity)[],
-  ) {
-    const ins = new FiredevCrud(controllers, entities);
-    return ins;
-  }
-  //#endregion
 
   //#region fields & getters
   private _adapter: any;
@@ -38,11 +33,15 @@ export class FiredevCrud {
   //#endregion
 
   //#region constructor
-  private constructor(
-    protected controllers: (typeof Models.db.BaseController)[] = [],
-    protected entities: (typeof Models.db.DBBaseEntity)[] = [],
+  constructor(
+    protected controllers: (typeof BaseController)[] = [],
+    protected entities: (typeof DBBaseEntity)[] = [],
   ) {
     //#region @backend
+    controllers.push(ProjectsController as any);
+    entities.push(ProjectInstance as any);
+    this.entities = Helpers.arrays.uniqArray(entities);
+    this.controllers = Helpers.arrays.uniqArray(controllers);
     this.location = path.join(process.cwd(), 'tmp-db', 'temp-db.json');
     //#endregion
   }
@@ -51,8 +50,8 @@ export class FiredevCrud {
   //#region api
 
   //#region api / get ctrl instance by class fn
-  getCtrlInstanceBy<T_CTRL>(ctrlClassFn: typeof Models.db.BaseController) {
-    const index = this.controllers.findIndex(ctrlClassFn as any);
+  getCtrlInstanceBy<T_CTRL>(ctrlClassFn: typeof BaseController) {
+    const index = this.controllers.findIndex(c => c === ctrlClassFn);
     return this.crud.controllersInstances[index] as any as T_CTRL;
   }
   //#endregion
@@ -63,7 +62,7 @@ export class FiredevCrud {
     const {
       alreadyInitedDb,
       callbackCreation,
-      transformPathDb,
+      recreateScopeFn,
       recreate,
       location,
     } = fixOptions(options, this.location);
@@ -83,32 +82,68 @@ export class FiredevCrud {
 
     this.crud.initControllers();
 
-    Helpers.log('[db] controllers inited');
+    Helpers.log('[db-crud] controllers inited');
 
     if (recreate) {
-      Helpers.log('[db] reinit transacton started');
+      Helpers.log('[db-crud] reinit transacton started');
 
-      Helpers.log(`[db][reinit] writing default values`);
+      Helpers.log(`[db-crud][reinit] writing default values`);
+
+      const recreateScope = _.isFunction(recreateScopeFn) ? await (recreateScopeFn(this.crud)) : {};
       await this.crud.clearDBandReinit(options.defaultValuesOverride || {});
-      await this.crud.addExitedValues();
+      await this.crud.addExitedValues(recreateScope);
 
       if (!config) {
-        Helpers.error(`config not available in db`)
+        Helpers.error(`config not available in db`);
       }
       if (_.isFunction(callbackCreation)) {
-        await callbackCreation();
+        await callbackCreation(this.crud);
       }
 
 
-      Helpers.info(`[db][reinit] DONE`);
-      Helpers.log('[db] reinit transacton finish');
+      Helpers.info(`[db-crud][reinit] DONE`);
+      Helpers.log('[db-crud] reinit transacton finish');
     }
 
     //#endregion
   }
   //#endregion
 
+  //#region api / raw get
+  public async rawGet<T = any>(keyOrEntityName: string) {
+    //#region @backendFunc
+    if (!this.crud) {
+      return;
+    }
+    return await this.crud.db.get(keyOrEntityName).value() as T;
+    //#endregion
+  }
   //#endregion
+
+  //#region api / raw set
+  public async rawSet<T = any>(keyOrEntityName: string, json: T) {
+    if (!this.crud) {
+      // Helpers.error(`[tnp-db][rawSet] cannot set db not defined`, true, true);
+      return;
+    }
+    let trys = 0;
+    while (true) {
+      trys++;
+      try {
+        await this.crud.db.set(keyOrEntityName, json as any).write();
+        break;
+      } catch (error) {
+        if (trys > 2) {
+          Helpers.warn(`[tnp-db][rawSet] http request to db  ${trys}th TIME REQUEST IS OK`);
+        }
+        continue;
+      }
+    }
+  }
+  //#endregion
+
+  //#endregion
+
 }
 
 //#region helpers

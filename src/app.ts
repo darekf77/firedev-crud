@@ -1,13 +1,13 @@
 //#region @notForNpm
-import { FiredevCrud } from './firedev-crud'
+import { FiredevCrud } from './firedev-crud';
 
-console.log('hello')
+console.log('hello');
 
 export default async function () {
   //#region @backend
-  const app = FiredevCrud.from();
+  const app = new FiredevCrud();
   await app.init();
-  process.exit(0)
+  process.exit(0);
   //#endregion
 }
 //#endregion

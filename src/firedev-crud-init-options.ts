@@ -1,8 +1,11 @@
+import { DbCrud } from './db-crud';
+
 export interface FiredevCrudInitOptions {
   recreate?: boolean;
   alreadyInitedDb?: boolean;
-  defaultValuesOverride?: { [entityName: string]: any[]; }
+  defaultValuesOverride?: { [entityName: string]: any[]; };
   transformPathDb?: (p: string) => string;
-  location?: string,
-  callbackCreation?: Promise<any>,
+  location?: string;
+  callbackCreation?: (crud: DbCrud) => Promise<any>;
+  recreateScopeFn?: (crud: DbCrud) => Promise<any>;
 }
