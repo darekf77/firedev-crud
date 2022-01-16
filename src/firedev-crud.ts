@@ -29,6 +29,10 @@ export class FiredevCrud {
   //#region fields & getters
   private _adapter: any;
   public crud: DbCrud;
+
+  /**
+   * full path to db.json
+   */
   protected location: string;
   //#endregion
 
