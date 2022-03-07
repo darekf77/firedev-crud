@@ -1,5 +1,5 @@
 //#region @notForNpm
-import { FiredevCrud } from './firedev-crud';
+import { FiredevCrud } from './lib/firedev-crud';
 
 console.log('hello');
 

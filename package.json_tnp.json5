@@ -2,13 +2,6 @@
   "resources": [
     "README.md"
   ],
-  "isCoreProject": false,
-  "useFramework": false,
-  "type": "isomorphic-lib",
-  "required": [
-    "tnp-helpers"
-  ],
-  "version": "v2",
   "overrided": {
     "ignoreDepsPattern": [],
     "includeAsDev": [],
@@ -22,10 +15,12 @@
     "obscure": false,
     "ugly": false
   },
-  "workerPlugins": {},
-  "license": "UNLICENSED",
-  "private": true,
-  "main": "index.js",
-  "isGenerated": false,
-  "requiredServers": []
+  "isCoreProject": false,
+  "useFramework": false,
+  "type": "isomorphic-lib",
+  "required": [
+    "tnp-helpers"
+  ],
+  "version": "v3",
+  "license": "UNLICENSED"
 }
