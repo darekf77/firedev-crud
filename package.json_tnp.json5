@@ -5,7 +5,9 @@
   "overrided": {
     "ignoreDepsPattern": [],
     "includeAsDev": [],
-    "includeOnly": [],
+    "includeOnly": [
+      "tnp-helpers"
+    ],
     "dependencies": {},
     "linkedFolders": []
   },
@@ -18,9 +20,7 @@
   "isCoreProject": false,
   "useFramework": false,
   "type": "isomorphic-lib",
-  "required": [
-    "tnp-helpers"
-  ],
+  "required": [],
   "version": "v3",
   "license": "UNLICENSED"
 }
