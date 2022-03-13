@@ -13,12 +13,16 @@ export class ProjectInstance extends DBBaseEntity<ProjectInstance> {
       return;
     }
     let inst: ProjectInstance;
+    // console.log('PROJECT FROM', projectOrPath)
+    if (_.isObject(projectOrPath)) {
+      projectOrPath = (projectOrPath as Project).location;
+    }
+
     if (_.isString(projectOrPath)) {
       projectOrPath = Project.From(projectOrPath) as Project;
       inst = new ProjectInstance({ locationOfProject: projectOrPath.location });
-    } else if (_.isObject(projectOrPath)) {
-      inst = new ProjectInstance({ locationOfProject: projectOrPath.location });
     }
+
     inst.assignProps();
     return inst;
     //#endregion

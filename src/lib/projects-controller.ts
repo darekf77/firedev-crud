@@ -35,12 +35,14 @@ export class ProjectsController extends BaseController<DbCrud> {
       Helpers.log(`[tnp-db] For now dont discover project in tnp db`);
       return;
     }
-    await this.discoverProjectsInLocation(path.resolve(path.join(Project.Tnp.location, '..')));
-    if (global.testMode) {
-      await this.discoverProjectsInLocation(path.resolve(config.pathes.tnp_tests_context), true);
-    } else {
-      await this.discoverProjectsInLocation(path.resolve(path.join(Project.Tnp.location, '../firedev-projects')));
-    }
+    //#region TODO QUCIK_FIX something here is causing nest projects data proeprty
+    // await this.discoverProjectsInLocation(path.resolve(path.join(Project.Tnp.location, '..')));
+    // if (global.testMode) {
+    //   await this.discoverProjectsInLocation(path.resolve(config.pathes.tnp_tests_context), true);
+    // } else {
+    //   await this.discoverProjectsInLocation(path.resolve(path.join(Project.Tnp.location, '../firedev-projects')));
+    // }
+    //#endregion
     //#endregion
   }
   //#endregion

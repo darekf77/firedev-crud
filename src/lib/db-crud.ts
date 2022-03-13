@@ -197,6 +197,7 @@ export class DbCrud {
     for (let index = 0; index < entites.length; index++) {
       const c = entites[index];
       const prepared = await this.preprareEntityForSave(c);
+      delete prepared['data'];
       json.push(prepared);
     }
     // console.log(`[setBulk] set json for entity ${entityName}`, json)

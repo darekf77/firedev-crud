@@ -1,7 +1,7 @@
 //#region @notForNpm
 import { FiredevCrud } from './lib/firedev-crud';
 
-console.log('hello');
+// console.log('hello');
 
 export default async function () {
   //#region @backend
