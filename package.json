@@ -1,6 +1,6 @@
 {
   "name": "firedev-crud",
-  "version": "13.0.8",
+  "version": "13.0.9",
   "license": "MIT",
   "dependencies": {
     "tnp-helpers": "~13.0.8"
@@ -81,7 +81,6 @@
     "bcryptjs": "2.4.3",
     "body-parser": "1.18.2",
     "bootstrap": "5.1.3",
-    "bs4-breakpoint": "2.0.42",
     "buffer-shims": "1.0.0",
     "callsite-record": "4.1.3",
     "chai": "4.2.0",

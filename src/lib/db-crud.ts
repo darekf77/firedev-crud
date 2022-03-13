@@ -230,6 +230,7 @@ export class DbCrud {
   protected async afterRetrive<T = any>(value: any, entityName: string)
     : Promise<DBBaseEntity> {
     //#region @backendFunc
+    delete value['data'];
 
     const entites = this.entities;
     for (let index = 0; index < entites.length; index++) {
@@ -241,6 +242,8 @@ export class DbCrud {
         return prepared;
       }
     }
+
+
 
     return value;
     //#endregion
@@ -267,9 +270,11 @@ export class DbCrud {
       if (entity.entityName === Models.db.getEntityNameByClassFN(entityClassFN)) {
         entity = await entity.prepareInstance();
         const prepared = await entity.getRawData();
+        delete prepared['data']
         return prepared;
       }
     }
+    Helpers.warn(`[tnp-db] local entity not found four ${entity?.entityName}`, true)
 
     return entity;
     //#endregion
