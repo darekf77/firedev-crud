@@ -1,7 +1,7 @@
 {
   "name": "firedev-crud",
-  "version": "13.0.9",
-  "license": "UNLICENSED",
+  "version": "13.0.10",
+  "license": "MIT",
   "dependencies": {
     "tnp-helpers": "~13.0.8"
   },
@@ -68,6 +68,7 @@
     "@types/progress": "2.0.3",
     "@types/q": "1.5.5",
     "@types/rimraf": "2.0.2",
+    "@types/semver": "6.0.1",
     "@types/systeminformation": "3.23.0",
     "@types/vinyl": "2.0.2",
     "@types/watch": "1.0.0",
@@ -113,6 +114,7 @@
     "express-fileupload": "0.4.0",
     "fbgraph": "1.4.1",
     "file-loader": "1.1.5",
+    "firedev": "^13",
     "firedev-crud": "~13.0.7",
     "firedev-crud-deamon": "~13.0.2",
     "firedev-ports": "~13.0.3",
@@ -195,6 +197,7 @@
     "reflect-metadata": "0.1.10",
     "rimraf": "2.6.2",
     "rxjs": "~7.5.0",
+    "semver": "6.3.0",
     "simple-git": "1.96.0",
     "sloc": "0.2.0",
     "socket.io": "2.4.1",
@@ -203,6 +206,7 @@
     "sudo-block": "3.0.0",
     "systeminformation": "3.45.7",
     "task.js": "0.1.5",
+    "tnp": "^13",
     "tnp-cli": "~13.0.1",
     "tnp-config": "~13.0.1",
     "tnp-core": "~13.0.2",
@@ -221,5 +225,6 @@
     "validator": "9.2.0",
     "watch": "1.0.2",
     "zone.js": "~0.11.4"
-  }
+  },
+  "private": false
 }
