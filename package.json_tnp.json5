@@ -17,9 +17,9 @@
     "obscure": false,
     "ugly": false
   },
+  "type": "isomorphic-lib",
   "isCoreProject": false,
   "useFramework": false,
-  "type": "isomorphic-lib",
   "required": [],
   "version": "v3",
   "license": "UNLICENSED"
