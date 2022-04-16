@@ -165,6 +165,13 @@ export class DbCrud {
   async set(entity: DBBaseEntity) {
     //#region @backend
     const classFN = CLASS.getFromObject(entity);
+    const className = CLASS.getName(classFN);
+    const entityName = Models.db.getEntityNameByClassName(className);
+
+    if (entityName === 'commands') { // TODO QUICK_FIX
+      return true;
+    }
+
     Helpers.log('getting all start');
     const all = await this.getAll(CLASS.getFromObject(entity));
     Helpers.log('getting all done');
@@ -192,7 +199,14 @@ export class DbCrud {
     const className = _.isFunction(classFN) ? CLASS.getName(classFN) :
       CLASS.getNameFromObject(_.first(entites));
 
+
+
     const entityName = Models.db.getEntityNameByClassName(className);
+
+    if (entityName === 'commands') { // TODO QUICK_FIX
+      return true;
+    }
+
     const json = [];
     for (let index = 0; index < entites.length; index++) {
       const c = entites[index];
