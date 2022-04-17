@@ -1,7 +1,7 @@
 {
   "name": "firedev-crud",
   "version": "13.0.19",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "dependencies": {
     "tnp-helpers": "~13.0.18"
   },
@@ -232,6 +232,5 @@
     "watch": "1.0.2",
     "zone.js": "~0.11.4"
   },
-  "lastBuildTagHash": "e86660510cca8ee95b54e5be78ff3d74edd232bb",
-  "private": false
+  "lastBuildTagHash": "e86660510cca8ee95b54e5be78ff3d74edd232bb"
 }
