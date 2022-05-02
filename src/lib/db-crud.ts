@@ -4,7 +4,7 @@ import { _ } from 'tnp-core';
 import { CLASS } from 'typescript-class-helpers';
 import { Helpers, Project } from 'tnp-helpers';
 import { BaseController, DBBaseEntity, Models } from 'tnp-models';
-import { Morphi } from 'morphi';
+import { Morphi as Firedev } from 'morphi';
 //#endregion
 import { IDBCrud } from './db-crud.model';
 
@@ -13,7 +13,7 @@ import { IDBCrud } from './db-crud.model';
 export class DbCrud {
   //#region fields & getters
   public controllersInstances: (BaseController<any>)[] = [];
-  public readonly context: Morphi.FrameworkContext;
+  public readonly context: Firedev.FrameworkContext;
   public get db() {
     return this.dbFromFile;
   }
