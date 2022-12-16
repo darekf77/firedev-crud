@@ -115,7 +115,7 @@
     "express-session": "1.17.3",
     "fbgraph": "^1.4.1",
     "file-loader": "^1.1.5",
-    "firedev-crud": "~13.1.34",
+    "firedev-crud": "~13.1.35",
     "firedev-crud-deamon": "~13.1.24",
     "firedev-ports": "~13.1.28",
     "firedev-storage": "~13.1.19",
@@ -235,5 +235,5 @@
     "watch": "~1.0.2",
     "zone.js": "~0.11.4"
   },
-  "lastBuildTagHash": "f0d6a9b9169d5f6bceb36f9b967209e3d319cc22"
+  "lastBuildTagHash": "2d1a4115e3643bf2ca694b55cdec12a660dadf5e"
 }
