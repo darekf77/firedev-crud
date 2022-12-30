@@ -113,7 +113,7 @@
     "fbgraph": "1.4.1",
     "file-loader": "1.1.5",
     "firedev": "^13",
-    "firedev-crud": "~13.1.35",
+    "firedev-crud": "~13.1.36",
     "firedev-crud-deamon": "~13.1.25",
     "firedev-ports": "~13.1.29",
     "firedev-storage": "~13.1.20",
@@ -235,5 +235,6 @@
   },
   "license": "UNLICENSED",
   "name": "firedev-crud",
-  "version": "13.1.36"
+  "version": "13.1.36",
+  "lastBuildTagHash": "abce920f295a6dac95b2e2d4122c9c94674087f9"
 }
