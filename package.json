@@ -115,7 +115,7 @@
     "file-loader": "1.1.5",
     "file-saver": "2.0.5",
     "firedev": "^13",
-    "firedev-crud": "~13.1.46",
+    "firedev-crud": "~13.1.47",
     "firedev-crud-deamon": "~13.1.36",
     "firedev-ports": "~13.1.40",
     "firedev-storage": "~13.1.29",
@@ -245,5 +245,5 @@
   "license": "UNLICENSED",
   "name": "firedev-crud",
   "version": "13.1.47",
-  "lastBuildTagHash": "2fa1c470d3e5b1d070d3ce6a322d413c151176f0"
+  "lastBuildTagHash": "60082003325dc973cdd64eb6425ba927b753f311"
 }
