@@ -6,11 +6,14 @@
   "overrided": {
     "ignoreDepsPattern": [],
     "includeAsDev": [],
+
     "includeOnly": [
       "tnp-helpers"
     ],
+
     "dependencies": {},
-    "linkedFolders": []
+    "linkedFolders": [],
+    'npmFixes': [],
   },
 
   "linkedProjects": [],
