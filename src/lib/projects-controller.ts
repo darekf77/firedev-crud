@@ -62,20 +62,8 @@ export class ProjectsController extends BaseController<DbCrud> {
     }
     this.recognized.push(projectInstance);
 
-    if (projectInstance.project.isWorkspace && !projectInstance.project.isGenerated
-      && projectInstance.project.distribution) {
-      const proj = projectInstance.project.distribution as any as Project;
-      if (proj) {
-        // Helpers.log(`[tnp-db] adding not existent`)
-        await this.addIfNotExists(ProjectInstance.from(proj));
-      }
-    }
-
     if (await this.crud.addIfNotExist(projectInstance)) {
-      if (_.isArray(projectInstance.project.preview)) {
-        // Helpers.log(`[tnp-db] adding not existent preview`)
-        await this.addIfNotExists(ProjectInstance.from(projectInstance.project.preview as any as Project));
-      }
+
       if (_.isArray(projectInstance.project.children)) {
         const children = projectInstance.project.children;
         for (let index = 0; index < children.length; index++) {
@@ -84,8 +72,6 @@ export class ProjectsController extends BaseController<DbCrud> {
           await this.addIfNotExists(ProjectInstance.from(c as any as Project));
         }
       }
-      // Helpers.log(`[tnp-db] adding preview`)
-      await this.addIfNotExists(ProjectInstance.from(projectInstance.project.preview as any as Project));
     }
     // Helpers.log(`[tnp-db] done adding`)
     //#endregion
