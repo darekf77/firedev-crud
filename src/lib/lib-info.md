@@ -1,7 +1,6 @@
 THIS FILE IS GENERATED. THIS FILE IS GENERATED. THIS FILE IS GENERATED.
 
-Assets from this folder are being shipped with this npm package (firedev-crud@16.5.10)
-created from this project.
+This folder is an entry point for npm Angular/NodeJS library
 
 THIS FILE IS GENERATED.THIS FILE IS GENERATED. THIS FILE IS GENERATED.
           
