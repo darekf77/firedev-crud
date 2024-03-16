@@ -1,7 +1,7 @@
 //#region imports
 import { _ } from 'tnp-core';
 import { DBBaseEntity, Models } from 'tnp-models';
-import { Project } from 'tnp-helpers';
+import { BaseProject as Project } from 'tnp-helpers';
 //#endregion
 
 export class ProjectInstance extends DBBaseEntity<ProjectInstance> {
@@ -19,7 +19,7 @@ export class ProjectInstance extends DBBaseEntity<ProjectInstance> {
     }
 
     if (_.isString(projectOrPath)) {
-      projectOrPath = Project.From(projectOrPath) as Project;
+      projectOrPath = Project.ins.From(projectOrPath) as Project;
       inst = new ProjectInstance({ locationOfProject: projectOrPath.location });
     }
 
@@ -32,7 +32,7 @@ export class ProjectInstance extends DBBaseEntity<ProjectInstance> {
   //#region fields & getters
   locationOfProject: string;
   get project() {
-    return Project.From<Project>(this.locationOfProject);
+    return Project.ins.From(this.locationOfProject);
   }
   //#endregion
 

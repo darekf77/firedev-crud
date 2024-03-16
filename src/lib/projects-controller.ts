@@ -10,7 +10,7 @@ import { _ } from 'tnp-core';
 import { DbCrud } from './db-crud';
 import { config } from 'tnp-config';
 import { CLASS } from 'typescript-class-helpers';
-import { Project, Helpers } from 'tnp-helpers';
+import {  BaseProject as Project, Helpers } from 'tnp-helpers';
 import { Models, BaseController } from 'tnp-models';
 //#endregion
 import { ProjectInstance } from './project-instance';
@@ -97,7 +97,7 @@ export class ProjectsController extends BaseController<DbCrud> {
       .map(name => path.join(location, name))
       .map((loc) => {
         // console.log(location)
-        return Project.From(loc);
+        return Project.ins.From(loc) as any;
       })
       .filter(f => !!f)
       .filter(f => {

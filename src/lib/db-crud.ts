@@ -2,7 +2,7 @@
 //#region isomorphic
 import { _ } from 'tnp-core';
 import { CLASS } from 'typescript-class-helpers';
-import { Helpers, Project } from 'tnp-helpers';
+import { Helpers, BaseProject as Project } from 'tnp-helpers';
 import { BaseController, DBBaseEntity, Models } from 'tnp-models';
 import { Morphi as Firedev } from 'morphi';
 //#endregion
