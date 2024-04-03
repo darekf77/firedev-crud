@@ -1,74 +1,75 @@
-//#region imports
-import { _ } from 'tnp-core';
-import { DBBaseEntity, Models } from 'tnp-models';
-import { BaseProject as Project } from 'tnp-helpers';
-//#endregion
+// // @ts-nocheck
+// //#region imports
+// import { _ } from 'tnp-core';
+// import { DBBaseEntity, Models } from 'tnp-models';
+// import { BaseProject as Project } from 'tnp-helpers';
+// //#endregion
 
-export class ProjectInstance extends DBBaseEntity<ProjectInstance> {
+// export class ProjectInstance extends DBBaseEntity<ProjectInstance> {
 
-  //#region static methods
-  public static from(projectOrPath: Project | string): ProjectInstance {
-    //#region @backendFunc
-    if (!projectOrPath) {
-      return;
-    }
-    let inst: ProjectInstance;
-    // console.log('PROJECT FROM', projectOrPath)
-    if (_.isObject(projectOrPath)) {
-      projectOrPath = (projectOrPath as Project).location;
-    }
+//   //#region static methods
+//   public static from(projectOrPath: Project | string): ProjectInstance {
+//     //#region @backendFunc
+//     if (!projectOrPath) {
+//       return;
+//     }
+//     let inst: ProjectInstance;
+//     // console.log('PROJECT FROM', projectOrPath)
+//     if (_.isObject(projectOrPath)) {
+//       projectOrPath = (projectOrPath as Project).location;
+//     }
 
-    if (_.isString(projectOrPath)) {
-      projectOrPath = Project.ins.From(projectOrPath) as Project;
-      inst = new ProjectInstance({ locationOfProject: projectOrPath.location });
-    }
+//     if (_.isString(projectOrPath)) {
+//       projectOrPath = Project.ins.From(projectOrPath) as Project;
+//       inst = new ProjectInstance({ locationOfProject: projectOrPath.location });
+//     }
 
-    inst.assignProps();
-    return inst;
-    //#endregion
-  }
-  //#endregion
+//     inst.assignProps();
+//     return inst;
+//     //#endregion
+//   }
+//   //#endregion
 
-  //#region fields & getters
-  locationOfProject: string;
-  get project() {
-    return Project.ins.From(this.locationOfProject);
-  }
-  //#endregion
+//   //#region fields & getters
+//   locationOfProject: string;
+//   get project() {
+//     return Project.ins.From(this.locationOfProject);
+//   }
+//   //#endregion
 
-  //#region api
+//   //#region api
 
-  //#region api / assign props
-  assignProps(): void {
-    //#region @backendFunc
-    const { locationOfProject } = this.data;
-    this.locationOfProject = locationOfProject;
-    //#endregion
-  }
-  //#endregion
+//   //#region api / assign props
+//   assignProps(): void {
+//     //#region @backendFunc
+//     const { locationOfProject } = this.data;
+//     this.locationOfProject = locationOfProject;
+//     //#endregion
+//   }
+//   //#endregion
 
-  //#region api / prepare instance
-  async prepareInstance(): Promise<ProjectInstance> {
-    this.assignProps();
-    return this;
-  }
-  //#endregion
+//   //#region api / prepare instance
+//   async prepareInstance(): Promise<ProjectInstance> {
+//     this.assignProps();
+//     return this;
+//   }
+//   //#endregion
 
-  //#region api / get raw data
-  async getRawData(): Promise<object> {
-    return {
-      locationOfProject: this.locationOfProject
-    };
-  }
-  //#endregion
+//   //#region api / get raw data
+//   async getRawData(): Promise<object> {
+//     return {
+//       locationOfProject: this.locationOfProject
+//     };
+//   }
+//   //#endregion
 
-  //#region api / is equal
-  isEqual(anotherInstace: ProjectInstance): boolean {
-    return _.isString(this.locationOfProject)
-      && _.isString(anotherInstace.locationOfProject)
-      && (this.locationOfProject === anotherInstace.locationOfProject);
-  }
-  //#endregion
+//   //#region api / is equal
+//   isEqual(anotherInstace: ProjectInstance): boolean {
+//     return _.isString(this.locationOfProject)
+//       && _.isString(anotherInstace.locationOfProject)
+//       && (this.locationOfProject === anotherInstace.locationOfProject);
+//   }
+//   //#endregion
 
-  //#endregion
-}
+//   //#endregion
+// }
