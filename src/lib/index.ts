@@ -4,4 +4,7 @@
 // export * from './firedev-crud';
 // export * from './project-instance';
 // export * from './projects-controller';
+export function nothingasdasds() {
+
+}
 
