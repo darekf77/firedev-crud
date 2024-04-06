@@ -23,7 +23,8 @@
       "includeNodeModules": false,
       "cliBuildNoDts": false,
       "cliBuildObscure": false,
-      "cliBuildIncludeNodeModules": false
+      "cliBuildIncludeNodeModules": false,
+      "cliBuildUglify": false
     },
     "smartContainerTarget": "",
     "type": "isomorphic-lib",
@@ -316,5 +317,6 @@
   "license": "UNLICENSED",
   "name": "firedev-crud",
   "version": "16.5.62",
-  "lastBuildTagHash": "08355e6cf0bc99d1361ae565a2ac3662403e3991"
+  "lastBuildTagHash": "08355e6cf0bc99d1361ae565a2ac3662403e3991",
+  "main": "dist/app.electron.js"
 }
