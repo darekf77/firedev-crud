@@ -2,23 +2,18 @@
   "resources": [
     "README.md"
   ],
-
   "overrided": {
     "ignoreDepsPattern": [],
     "includeAsDev": [],
-
     "includeOnly": [
       "tnp-helpers"
     ],
-
     "dependencies": {},
     "linkedFolders": [],
     'npmFixes': [],
   },
-
   'smartContainerBuildTarget': '',
   'linkedRepos': [],
-
   "libReleaseOptions": {
     "nodts": false,
     "obscure": false,
@@ -29,7 +24,6 @@
     'cliBuildIncludeNodeModules': false,
     'cliBuildUglify': false,
   },
-
   'smartContainerTarget': '',
   "type": "isomorphic-lib",
   "isCoreProject": false,
