@@ -335,7 +335,7 @@
   },
   "license": "UNLICENSED",
   "name": "firedev-crud",
-  "version": "16.444.2",
+  "version": "16.444.3",
   "lastBuildTagHash": "17681c370653a1c4636b52afd2d6b16d45ba6844",
   "main": "dist/app.electron.js"
 }
